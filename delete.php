@@ -8,4 +8,4 @@ $stmt = $pdo->prepare('UPDATE books SET is_deleted=1 WHERE id = :id'); // statem
 $stmt->execute(['id' => $id]); // tagastab statementi
 $book = $stmt->fetch();
 
-header('Location: index.php')
+header('Location: index.php');
