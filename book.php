@@ -41,7 +41,8 @@ $stmt->execute(['book_id' => $id]);
   <p><strong>Laoseis:</strong> <?= $book['stock_saldo'];?></p>  
   <p><strong>Raamatu tüüp:</strong> <?= $book['type'];?></p>
   
-  <form action="delete.php" method="post">
+  <form action="delete.php" method="post" id="delete">
+    <input type="hidden" name="id" value="<?= $book['id'];?>">
     <button>Kustuta</button>
   </form>
 </body>

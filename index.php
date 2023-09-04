@@ -2,7 +2,7 @@
 
 require_once('./connection.php');
 
-$stmt = $pdo->query('SELECT * FROM books');
+$stmt = $pdo->query('SELECT * FROM books where is_deleted <> 1');
 
 echo "<ul>";
 
