@@ -17,33 +17,36 @@ $stmt->execute(['book_id' => $id]);
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><?= $book['title']; ?></title>
 </head>
+
 <body>
   <h1><?= $book['title']; ?></h1>
   <img src="<?= $book['cover_path']; ?>">
-  <p><strong>Author:</strong> 
-    <?php 
-      while ($authors = $stmt->fetch()){
-        ?> 
-            <span><?= $authors['first_name'] ;?> <?= $authors['last_name'] ;?>, </span>
+  <p><strong>Author:</strong>
     <?php
+    $author = [];
+    while ($authors = $stmt->fetch()) {
+      $author[] = $authors['first_name'] . ' ' . $authors['last_name'];
     } ?>
-  </p>  
-  <p><strong>Keel:</strong> <?= $book['language'];?></p>
-  <p><strong>Hind:</strong> <?= round($book['price'],2); ?> € <small><em>(keskmine lehe hind: <?= round($book['price']/$book['pages'],2); ?> €)</em></small></p> 
-  <p><strong>Lehti:</strong> <?= $book['pages'];?></p> 
+    <span><?= implode(', ', $author); ?></span>
+  </p>
+  <p><strong>Keel:</strong> <?= $book['language']; ?></p>
+  <p><strong>Hind:</strong> <?= round($book['price'], 2); ?> € <small><em>(keskmine lehe hind: <?= round($book['price'] / $book['pages'], 2); ?> €)</em></small></p>
+  <p><strong>Lehti:</strong> <?= $book['pages']; ?></p>
   <p><strong>Kokkuvõte:</strong> <?= $book['summary']; ?></p>
-  <p><strong>Laoseis:</strong> <?= $book['stock_saldo'];?></p>  
-  <p><strong>Raamatu tüüp:</strong> <?= $book['type'];?></p>
-  
+  <p><strong>Laoseis:</strong> <?= $book['stock_saldo']; ?></p>
+  <p><strong>Raamatu tüüp:</strong> <?= $book['type']; ?></p>
+
   <form action="delete.php" method="post" id="delete">
-    <input type="hidden" name="id" value="<?= $book['id'];?>">
+    <input type="hidden" name="id" value="<?= $book['id']; ?>">
     <button>Kustuta</button>
   </form>
 </body>
+
 </html>
