@@ -43,9 +43,13 @@ $stmt->execute(['book_id' => $id]);
   <p><strong>Laoseis:</strong> <?= $book['stock_saldo']; ?></p>
   <p><strong>Raamatu tüüp:</strong> <?= $book['type']; ?></p>
 
+  <form action="edit.php" method="post" id="edit">
+    <input type="hidden" name="id" value="<?= $book['id']; ?>">
+    <button onclick="return confirm('Oled kindel, et soovid muuta?')">Muuda</button>
+  </form>
   <form action="delete.php" method="post" id="delete">
     <input type="hidden" name="id" value="<?= $book['id']; ?>">
-    <button>Kustuta</button>
+    <button onclick="return confirm('Oled kindel, et soovid kustutada?')">Kustuta</button>
   </form>
 </body>
 
