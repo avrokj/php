@@ -3,17 +3,12 @@
 require_once('./connection.php');
 
 $id = $_POST['id'];
-
 $stmt = $pdo->prepare('SELECT * FROM books WHERE id = :id');
 $stmt->execute(['id' => $id]);
 $book = $stmt->fetch();
 
 $stmt = $pdo->prepare('SELECT * FROM book_authors ba left join authors a on a.id = ba.author_id WHERE ba.book_id = :book_id');
 $stmt->execute(['book_id' => $id]);
-
-$stmt = $pdo->prepare('UPDATE books SET title = :title WHERE id = :id');
-// $stmt->bindValue(":title", $title);
-// $stmt->execute(['id' => $id]);
 
 ?>
 
@@ -28,7 +23,7 @@ $stmt = $pdo->prepare('UPDATE books SET title = :title WHERE id = :id');
 </head>
 
 <body>
-  <form action="edit.php" method="post" id="edit">
+  <form action="edit_db.php" method="post" id="edit">
     <h1>Pealkiri: <input type='text' name='title' value='<?= $book['title']; ?>'></h1>
     <img src="<?= $book['cover_path']; ?>">
     <p><strong>Author:</strong>
