@@ -1,0 +1,19 @@
+{
+  "name": "php",
+  "version": "1.0.0",
+  "description": "**kodutöö** - Raamatupoe veebirakenduse ülesanne. Eesmärgiks on luua lihtne PHP rakendus, mis teeb raamatupoe andmebaasi PDO abil päringuid.",
+  "main": "tailwind.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "tailwind -i ./tailwind.css -o ./src/output.css --watch",
+    "build": "tailwindcss build -i ./tailwind.css -o ./src/output.css -w",
+    "watch-css": "tailwindcss build -i ./tailwind.css -o ./src/output.css --watch"
+  },
+  "author": "Jan Kõrva",
+  "license": "ISC",
+  "dependencies": {
+    "autoprefixer": "^10.4.15",
+    "postcss-cli": "^10.1.0",
+    "tailwindcss": "^3.3.3"
+  }
+}
