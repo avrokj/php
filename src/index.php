@@ -23,7 +23,9 @@ $stmt = $pdo->query('SELECT * FROM books where is_deleted <> 1 order by title');
 
         <header class="flex bg-gray-200 shadow rounded-t-lg grid grid-cols-3 p-4 sticky top-0">
             <div class="self-center">
-                <h1 class="text-4xl">Raamatud</h1>
+                <a href="./">
+                    <h1 class="text-4xl">Raamatud</h1>
+                </a>
             </div>
             <div class="flex justify-center items-center">
                 <form action="./search.php" method="post" class="max-w-[480px] w-full px-4">
