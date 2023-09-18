@@ -1,5 +1,6 @@
 // tailwind.config.js
 module.exports = {
+  darkMode: "class",
   future: {},
   purge: [],
   content: ["./src/**/*.{php,html,js}"],
