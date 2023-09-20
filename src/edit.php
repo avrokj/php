@@ -115,7 +115,7 @@ $stmt->execute(['book_id' => $id]);
 
 
         <div class="inline-flex pt-10 gap-4">
-          <a href="./book.php?id=$id" name="back" class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"><i class="fa fa-arrow-left"></i> Tagasi</a>
+          <a href="./book.php?id=<?= $id; ?>" name="back" class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"><i class="fa fa-arrow-left"></i> Tagasi</a>
           <input type="hidden" name="id" value="<?= $book['id']; ?>">
           <button type="submit" name="edit" onclick="return confirm('Oled kindel, et soovid muuta?')" class="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 border-b-4 border-green-700 hover:border-green-500 rounded"><i class="fa fa-floppy-o"></i> Salvesta</button>
         </div>
