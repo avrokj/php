@@ -42,16 +42,16 @@ if (isset($_POST['add-author'])) {
         <div class="flex flex-wrap -mx-3 mb-2">
           <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label class="block font-bold mt-2">Eesnimi</label>
-            <input type='text' name='first-name' value='' class='w-full dark:bg-slate-500 border dark:border-cyan-600 shadow rounded h-10 shadow p-4 focus:shadow-outline'>
+            <input type='text' name='first-name' class='w-full dark:bg-slate-500 border dark:border-cyan-600 shadow rounded h-10 shadow p-4 focus:shadow-outline'>
           </div>
           <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0"><label class="block font-bold mt-2">Perekonnanimi</label>
-            <input type='text' min="0" name='last-name-name' value='' class='w-full dark:bg-slate-500 border dark:border-cyan-600 shadow rounded h-10 shadow p-4 focus:shadow-outline'>
+            <input type='text' min="0" name='last-name' class='w-full dark:bg-slate-500 border dark:border-cyan-600 shadow rounded h-10 shadow p-4 focus:shadow-outline'>
           </div>
         </div>
 
         <div class="inline-flex pt-10 gap-4">
           <a href="./index.php" name="back" class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"><i class="fa fa-arrow-left"></i> Avalehele</a>
-          <button type="submit" name="add-author" onclick="return confirm('Oled kindel, et soovid muuta?')" class="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 border-b-4 border-green-700 hover:border-green-500 rounded"><i class="fa fa-floppy-o"></i> Lisa</button>
+          <button type="submit" name="add-author" class="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 border-b-4 border-green-700 hover:border-green-500 rounded"><i class="fa fa-floppy-o"></i> Lisa</button>
         </div>
     </div>
 
