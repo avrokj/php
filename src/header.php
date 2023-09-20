@@ -19,11 +19,11 @@
   <div class="text-right self-center">
     <?php
     if (stripos($_SERVER['REQUEST_URI'], 'book') !== false || stripos($_SERVER['REQUEST_URI'], 'edit') !== false) {
-      $cnt = $stmt->rowCount();
       echo "Raamatu ID: <strong>$id</strong>.";
     } elseif (stripos($_SERVER['REQUEST_URI'], 'add_author') !== false) {
       echo "Autori ID: <strong></strong>.";
     } else {
+      $cnt = $stmt->rowCount();
       echo "Meil on <strong>$cnt</strong> raamatut.";
     }; ?>
   </div>
