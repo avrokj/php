@@ -50,7 +50,7 @@ if (isset($_POST['add-author'])) {
         </div>
 
         <div class="inline-flex pt-10 gap-4">
-          <a href="./index.php" name="back" class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"><i class="fa fa-arrow-left"></i> Avalehele</a>
+          <a href="./index.php" name="back" class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"><i class="fa fa-home"></i> Avalehele</a>
           <button type="submit" name="add-author" class="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 border-b-4 border-green-700 hover:border-green-500 rounded"><i class="fa fa-floppy-o"></i> Lisa</button>
         </div>
     </div>

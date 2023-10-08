@@ -12,6 +12,7 @@ $stmt = $pdo->query('SELECT a.id author_id, a.first_name, a.last_name, b.id book
   <title>Raamatud</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Roboto&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="./output.css" rel="stylesheet">
 </head>
@@ -43,11 +44,11 @@ $stmt = $pdo->query('SELECT a.id author_id, a.first_name, a.last_name, b.id book
                   ?>.
                 </td>
                 <td class="whitespace-nowrap px-4 py-2">
-                  <a href="./author.php?id=<?= $row['author_id']; ?>">
-                    <?= $row['first_name']; ?> <?= $row['last_name']; ?>
-                  </a>
+                  <?= $row['first_name']; ?> <?= $row['last_name']; ?>
                 </td>
-                <td class="whitespace-nowrap px-4 py-2"><?= $row['title']; ?></td>
+                <td class="whitespace-nowrap px-4 py-2">
+                  <a href="./book.php?id=<?= $row['bookid']; ?>"><?= $row['title']; ?></a>
+                </td>
               </tr>
             <?php
             }

@@ -2,13 +2,12 @@
 
 require_once('./connection.php');
 
-$SearchValue = $_POST['SearchValue'];
+$keyword = $_POST['keyword'];
 
-$stmt = $pdo->prepare('SELECT * FROM books WHERE lower(title) LIKE :SearchValue order by title');
-$stmt->bindValue(':SearchValue', '%' . strtolower($SearchValue) . '%');
-$stmt->execute();
-$book = $stmt->fetch();
-$count = $stmt->rowCount() - 1;
+$stmt = $pdo->prepare('SELECT * FROM books WHERE lower(title) LIKE lower(:keyword) order by title');
+$stmt->execute(['keyword' => '%' . $keyword . '%']);
+$book = $stmt->fetchAll();
+$count = $stmt->rowCount();
 ?>
 
 <!DOCTYPE html>
@@ -33,13 +32,13 @@ $count = $stmt->rowCount() - 1;
       <h1 class="text-2xl">Otsingu tulemused:</h1>
 
       <?php if (count($book) > 0) {
-        echo "<p class='py-2'>Tulemusi otsingule <strong>$SearchValue</strong> leiti <strong>$count</strong> tulemust.</p>";
+        echo "<p class='py-2'>Tulemusi otsingule <strong>$keyword</strong> leiti <strong>$count</strong> tulemust.</p>";
       ?>
 
         <ol class="list-inside list-decimal">
 
           <?php
-          while ($row = $stmt->fetch()) {
+          foreach ($book as $row) {
           ?>
             <li>
               <a href="./book.php?id=<?= $row['id']; ?>">
@@ -53,7 +52,7 @@ $count = $stmt->rowCount() - 1;
           </ul>
         <?php
       } else {
-        echo "<p>Tulemusi otsingule <strong>$SearchValue</strong> ei leitud.</p>";
+        echo "<p>Tulemusi otsingule <strong>$keyword</strong> ei leitud.</p>";
       }
         ?>
 

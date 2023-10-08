@@ -11,6 +11,30 @@ $book = $stmt->fetch(); // tagastab array
 $stmt = $pdo->prepare('SELECT * FROM book_authors ba left join authors a on a.id = ba.author_id WHERE ba.book_id = :book_id');
 $stmt->execute(['book_id' => $id]);
 
+if (isset($_POST['delete_book'])) {
+  $id = $_POST['id'];
+
+  $stmt = $pdo->prepare('UPDATE books SET is_deleted=1 WHERE id = :id');
+  $stmt->execute(['id' => $id]);
+
+  echo "<script>
+          alert('Kustutatud!'); 
+          window.location.href = './book.php?id=$id';
+          </script>";
+  exit();
+} else if (isset($_POST['restore_book'])) {
+  $id = $_POST['id'];
+
+  $stmt = $pdo->prepare('UPDATE books SET is_deleted=0 WHERE id = :id');
+  $stmt->execute(['id' => $id]);
+
+  echo "<script>
+          alert('Taastatud!'); 
+          window.location.href = './book.php?id=$id';
+          </script>";
+  exit();
+}
+
 // var_dump($book);
 // die();
 ?>
@@ -25,6 +49,7 @@ $stmt->execute(['book_id' => $id]);
   <title><?= $book['title']; ?></title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Roboto&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="./output.css" rel="stylesheet">
   <script src="./app.js" type="javascript"></script>
@@ -54,19 +79,24 @@ $stmt->execute(['book_id' => $id]);
           <p class="py-2"><strong>Lehti:</strong> <?= $book['pages']; ?></p>
           <p class="py-2"><strong>Laoseis:</strong> <?= $book['stock_saldo']; ?></p>
           <p class="py-2"><strong>Raamatu tüüp:</strong> <?= $book['type']; ?></p>
+          <!-- <p class="py-2"><strong>Olek:</strong> <?= $book['is_deleted']; ?></p> -->
         </div>
       </div>
 
       <div class="py-4"><strong>Kokkuvõte:</strong> <?= $book['summary']; ?></div>
 
       <div class="inline-flex pt-10">
+        <a href="./index.php" name="back" class="mr-3 bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"><i class="fa fa-home"></i> Avalehele</a>
         <form action="edit.php?id=<?= $id; ?>" method="post" id="edit" class="pr-4">
           <input type="hidden" name="id" value="<?= $book['id']; ?>">
-          <button onclick="return confirm('Oled kindel, et soovid muuta?')" class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"><i class="fa fa-pencil" aria-hidden="true"></i> Muuda</button>
+          <button onclick="return confirm('Oled kindel, et soovid muuta?')" class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-600 hover:border-blue-500 rounded"><i class="fa fa-pencil" aria-hidden="true"></i> Muuda</button>
         </form>
-        <form action="delete.php" method="post" id="delete" class="pr-4">
-          <input type="hidden" name="id" value="<?= $book['id']; ?>">
-          <button onclick="return confirm('Oled kindel, et soovid kustutada?')" class="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded"><i class="fa fa-trash" aria-hidden="true"></i> Kustuta</button>
+        <form method="post" class="">
+          <input type="hidden" name="id" name="delete_book" value="<?= $book['id']; ?>">
+          <button type="submit" name="delete_book" onclick="return confirm('Oled kindel, et soovid kustutada?')" class="mr-3 bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-600 hover:border-red-500 rounded"><i class="fa fa-trash" aria-hidden="true"></i> Kustuta</button>
+          <?php if ($book['is_deleted'] == 1) { ?>
+            <button type="submit" name="restore_book" onclick="return confirm('Oled kindel, et soovid taastada?')" class="mr-3 bg-gray-500 hover:bg-gray-400 text-white font-bold py-2 px-4 border-b-4 border-gray-600 hover:border-gray-500 rounded"><i class="fa fa-recycle" aria-hidden="true"></i> Taasta</button>
+          <?php } ?>
         </form>
       </div>
 
