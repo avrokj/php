@@ -80,7 +80,8 @@ $stmt = $pdo->query('select * from (SELECT *, (@rn := @rn + 1) as rn FROM books 
                     </li>
                     <?php
                     for ($page_number = 1; $page_number <= $total_pages; $page_number++) {
-                        if ($_GET['page'] == $page_number) {
+                        $page = $_GET['page'];
+                        if ($page == $page_number) {
                             echo '<li>';
                             echo '<a href = "index.php?page=' . $page_number . '" aria-current="page" class="z-10 flex items-center justify-center px-3 h-8 leading-tight text-blue-600 border border-blue-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white">' . $page_number . '</a>';
                             echo '</li>';
