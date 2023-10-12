@@ -4,7 +4,7 @@ require_once('./connection.php');
 
 $keyword = $_POST['keyword'];
 
-$stmt = $pdo->prepare('SELECT * FROM books WHERE lower(title) LIKE lower(:keyword) order by title');
+$stmt = $pdo->prepare('SELECT * FROM books WHERE is_deleted <> 1 and lower(title) LIKE lower(:keyword) order by title');
 $stmt->execute(['keyword' => '%' . $keyword . '%']);
 $book = $stmt->fetchAll();
 $count = $stmt->rowCount();
